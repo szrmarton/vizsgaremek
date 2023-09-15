@@ -1,0 +1,35 @@
+.navbar{
+    background-color: rgb(91, 87, 87);
+    height: 80px;
+    color: white;
+}
+
+.navbar p{
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 10px;
+    display: block;
+}
+h1{
+    text-align: center;
+    position: relative;
+    top: 20px;
+}
+
+p:hover{
+    background-color: rgb(16, 108, 108);
+    border-radius: 5px;
+    position: relative;
+}
+
+.navbar p.active{
+    background-color: gray;
+    border-radius: 10px;
+}
+
+.navbar p.active:hover{
+    background-color: green;
+}

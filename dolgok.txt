@@ -1,0 +1,24 @@
+emelet
+	hsrp
+	vlan
+	-belso wifi
+	-irodak
+
+foldszint
+	vlan
+	-guest wifi
+	-recepció
+
+r1
+	gre alagót a szerverparkba
+	remote access vpn
+	pat
+	nat vnp szerver
+	eigrp forgalom irányítás
+
+szerverpark
+	pat
+
+hozzáférési listák
+	csak belső címek érhetik el
+	guest_wifi csak internetet érhet el

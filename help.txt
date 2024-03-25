@@ -1,0 +1,83 @@
+ena
+conf t
+hostname ISP4
+int g0/0
+ip address 152.19.118.1 255.255.255.252
+no sh
+int se0/0/0
+ip address 20.20.20.13 255.255.255.252
+no sh
+int se0/0/1
+ip address 20.20.20.10 255.255.255.252
+no sh
+do write
+
+
+
+ena
+conf t
+int range fa 0/1-2
+channel group 1 mode active
+int port-channel 1
+switchport mode trunk
+do write
+
+
+ena
+conf t
+router ospf 1
+network 8.8.8.0 0.0.0.15 area 0
+network 20.20.20.0 0.0.0.3 area 0
+network 20.20.20.4 0.0.0.3 area 0
+passive-interface gi 0/0
+do wr
+
+ena
+conf t
+router eigrp 1
+eigrp router-id 1.1.1.1
+passive-interface gi 0/0
+network 10.0.0.0 0.0.0.3
+network 10.0.0.4 0.0.0.3
+network 192.168.10.0 0.0.0.127
+network 192.168.20.64 0.0.0.63
+network 192.168.60.0 0.0.0.255
+network 192.168.99.0 0.0.0.63
+do write
+
+ena
+conf t
+int range fa 0/1-2
+channel group 1 mode active
+int port-channel 1
+switchport mode trunk
+int range fa 0/3-5
+sw mo tr
+int gig 0/1
+sw mo tr
+do write
+
+ena
+conf t
+vtp mode client
+vtp version 2
+vtp domain melodiakk.hu
+vtp password cisco
+do write
+
+hostname EmeletVezSW
+ip domain-name melodiakk.hu
+crypto key generate rsa general-keys modulus 1024
+username admin password cisco
+line vty 0 15
+transport input ssh
+login local
+do write
+
+int vlan 99
+no sh
+ip address 192.168.99.9 255.255.255.192
+exit
+ip default-gateway 192.168.99.1
+do write
+

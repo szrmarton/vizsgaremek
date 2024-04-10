@@ -81,3 +81,15 @@ exit
 ip default-gateway 192.168.99.1
 do write
 
+
+
+int tunnel 1
+tunnel mode ipv6ip
+ipv6 add 2001::1/64
+tunnel source g0/0
+tunnel destination 40.32.172.2
+
+
+
+
+

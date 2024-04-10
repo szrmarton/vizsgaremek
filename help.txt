@@ -17,7 +17,7 @@ do write
 ena
 conf t
 int range fa 0/1-2
-channel group 1 mode active
+channel-group 1 mode active
 int port-channel 1
 switchport mode trunk
 do write
@@ -59,7 +59,7 @@ do write
 
 ena
 conf t
-vtp mode client
+vtp mode server
 vtp version 2
 vtp domain melodiakk.hu
 vtp password cisco
@@ -89,7 +89,18 @@ ipv6 add 2001::1/64
 tunnel source g0/0
 tunnel destination 40.32.172.2
 
-
-
-
-
+ena
+conf t
+int gi 0/0.10
+standby 1 ip 192.168.10.1
+standby 1 priority 130
+int gi 0/0.20
+standby 1 ip 192.168.20.65
+standby 1 priority 130
+int gi 0/0.60
+standby 1 ip 192.168.60.1
+standby 1 priority 130
+int gi 0/0.99
+standby 1 ip 192.168.99.1
+standby 1 priority 130
+do wr
